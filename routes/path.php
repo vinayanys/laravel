@@ -1,0 +1,1 @@
+Route::verb("/path", callback);
