@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Article;
+use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $articles = Cache::remember('articles', 60, function () {
+            return Article::all();
+        });
         return view('home');
     }
 }
